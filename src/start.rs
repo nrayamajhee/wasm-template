@@ -7,5 +7,7 @@ pub async fn start() -> Result<(), JsValue> {
     .ok_or(JsValue::from("No Document"))?;
   let p = document.create_element("p")?;
   p.set_inner_html("Hello wasm!");
+  let body = document.body().ok_or(JsValue::from("No Body"))?;
+  body.append_child(&p)?;
   Ok(())
 }
